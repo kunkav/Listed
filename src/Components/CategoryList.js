@@ -8,7 +8,7 @@ const CategoryList = ( {data, isHorizontal, navigation} ) => {
     return isHorizontal ? (              
     <FlatList 
         data={data}
-
+        bounces= {true}
         horizontal= {isHorizontal}
         showsHorizontalScrollIndicator= {false}   
         renderItem={({item}) => (
@@ -25,7 +25,7 @@ const CategoryList = ( {data, isHorizontal, navigation} ) => {
     showsHorizontalScrollIndicator= {false}
     numColumns= {numColumns}   
     renderItem={({item}) => (
-      <TouchableOpacity onPress= { ()=> { navigation.navigate('CategoryResultList', { resultName: item.name } ) } }>
+      <TouchableOpacity onPress= { ()=> { navigation.navigate('Institute', { resultName: item.name, url: item.uri } ) } }>
         <View style={styles.itemContainer}>
           <Image style={styles.item} source={ {uri: item.uri}}/>
           <Text>{item.name}</Text>

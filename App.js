@@ -8,20 +8,11 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 import { FontAwesome5, Feather } from '@expo/vector-icons';
 import React from 'react';
 import CategoryResultList from './src/Components/CategoryResultList';
+import InstituteComponent from './src/Components/InstituteComponent';
 
-const navigator1 = createStackNavigator(
-    {
-        Search: SearchScreen,
-        ResultsShow: ResultsShowScreen
-    }, {
-        initialRouteName: 'Search',
-        defaultNavigationOptions: {
-            title: 'Listed'
-        }
-    }
-);
 
-const navigator = createMaterialBottomTabNavigator(
+
+const navigator2 = createMaterialBottomTabNavigator(
     {
         Home: {
             screen: HomeScreen,
@@ -46,17 +37,33 @@ const navigator = createMaterialBottomTabNavigator(
             navigationOptions: {
                 tabBarIcon: ()=> <FontAwesome5 name="user-circle" size={24} color="#ffffff"/>
             }
-        },
-        CategoryResultList: {
-            screen: CategoryResultList
-        }
+        }     
     },
-    {
-        initialRouteName: 'Home',
+    {    
         activeColor: '#f0edf6',
     inactiveColor: '#3e2465',
     barStyle: { backgroundColor: '#11a7f7' },
     }    
 );
 
-export default createAppContainer(navigator);
+const navigator1 = createStackNavigator(
+    {
+        CategoryResultList: {
+        screen: CategoryResultList
+    },    
+        TabNavigator: { 
+            screen: navigator2 
+        },        
+        Institute: {
+            screen: InstituteComponent
+        }              
+},
+{
+    initialRouteName: 'TabNavigator',
+    title: 'Listed',
+    headerTransitionPreset: 'fade-in-place',
+    headerTintColour: '#11a7f7'
+} 
+);
+
+export default createAppContainer(navigator1);
